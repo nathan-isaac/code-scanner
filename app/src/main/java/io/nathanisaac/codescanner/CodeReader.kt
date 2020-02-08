@@ -19,11 +19,11 @@ class CodeReader {
             .getVisionBarcodeDetector(options)
     }
 
-    public fun getImageBarcodes(image: FirebaseVisionImage, updateCodes: (ArrayList<String>) -> Unit) {
+    public fun getImageBarcodes(image: FirebaseVisionImage, updateCodes: (ArrayList<FirebaseVisionBarcode>) -> Unit) {
 
         val result = detector.detectInImage(image)
             .addOnSuccessListener { barcodes ->
-                val codes = arrayListOf<String>()
+                val codes = arrayListOf<FirebaseVisionBarcode>()
 
                 for (barcode in barcodes) {
                     val bounds = barcode.boundingBox
@@ -31,7 +31,7 @@ class CodeReader {
                     val rawValue = barcode.rawValue
                     val valueType = barcode.valueType
 
-                    codes.add(rawValue.toString())
+                    codes.add(barcode)
                 }
 
                 updateCodes(codes)
