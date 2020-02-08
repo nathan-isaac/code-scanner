@@ -8,9 +8,9 @@ import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOption
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 
 class CodeReader {
-    private val detector: FirebaseVisionBarcodeDetector
+    protected val detector: FirebaseVisionBarcodeDetector
 
-    constructor() {
+    init {
         val options = FirebaseVisionBarcodeDetectorOptions.Builder()
             .setBarcodeFormats(FirebaseVisionBarcode.FORMAT_CODE_128)
             .build()
@@ -19,7 +19,7 @@ class CodeReader {
             .getVisionBarcodeDetector(options)
     }
 
-    public fun getImageBarcodes(image: FirebaseVisionImage, updateCodes: (ArrayList<FirebaseVisionBarcode>) -> Unit) {
+    fun getImageBarcodes(image: FirebaseVisionImage, updateCodes: (ArrayList<FirebaseVisionBarcode>) -> Unit) {
 
         val result = detector.detectInImage(image)
             .addOnSuccessListener { barcodes ->

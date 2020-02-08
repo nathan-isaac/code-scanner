@@ -39,9 +39,9 @@ class MainActivity : AppCompatActivity() {
                         val paint = Paint()
                         val rectangle = Rect(bounds.left, bounds.top, bounds.right, bounds.bottom)
 
-                        paint.setColor(Color.RED)
-                        paint.setStyle(Paint.Style.STROKE)
-                        paint.setStrokeWidth(10.toFloat())
+                        paint.color = Color.RED
+                        paint.style = Paint.Style.STROKE
+                        paint.strokeWidth = 10.toFloat()
 
                         canvas.drawRect(rectangle, paint)
 
